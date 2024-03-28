@@ -1,3 +1,18 @@
+import { Header } from "../ components/Header.jsx";
+import { Post } from "./Post.jsx";
+import "./styles.css";
 export function App() {
-  return <h1> Hello World </h1>;
+  return (
+    <div>
+      <Header />
+      <Post
+        author="Ícaro"
+        content="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
+      />
+      <Post
+        author="Soren"
+        content="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
+      />
+    </div>
+  );
 }
