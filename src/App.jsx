@@ -1,5 +1,6 @@
 import { Header } from "../components/Header.jsx";
 import { Post } from "../components/Post.jsx";
+import { Comment } from "../components/Comment.jsx";
 import { Sidebar } from "../components/Sidebar.jsx";
 import styles from "./App.module.css";
 import "./global.css";
@@ -13,13 +14,15 @@ export function App() {
 
         <main>
           <Post
-            author="Ícaro"
-            content="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
+            authorName="Ícaro"
+            authorInfo="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
           />
           <Post
             author="Soren"
             content="Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat."
           />
+
+          <Comment />
         </main>
       </div>
     </div>
