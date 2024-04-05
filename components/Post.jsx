@@ -1,29 +1,41 @@
 import styles from "./Post.module.css";
 
-export function Post() {
+export function Post(props) {
   return (
     <article className={styles.post}>
-      <header className={styles.author}>
-        <img
-          className={styles.authorAvatar}
-          src="https://avatars.githubusercontent.com/u/43785447?v=4"
-        ></img>
-        <div>
-          <strong className={styles.authorName}></strong>
-          <span className={styles.authorInfo}></span>
+      <header>
+        <div className={styles.author}>
+          <img src="https://avatars.githubusercontent.com/u/43785447?v=4"></img>
+
+          <div className={styles.authorInfo}>
+            <strong>Hello</strong>
+            <span>there</span>
+          </div>
         </div>
-        <time title="11 de maio as 8:13" dateTime="2024-04-24 09:15:09"></time>
+
+        <time title="11 de maio as 8:13h" dateTime="2024-04-24 09:15:09">
+          Publicado há 1h
+        </time>
       </header>
 
       <div className={styles.content}>
-        <p> Fala galeraa 👋</p>
+        <p>Hello Everyone 👋</p>
         <p>
           {" "}
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
+          This is my first project with React and Vite, Im loving the experience
+          thanks for your visit. S2{" "}
         </p>
-        <a href="">👉 jane.design/doctorcare</a>
-        <a href="">#novoprojeto #nlw #rocketseat</a>
+
+        <p>
+          <a href="https://github.com/icaroquadra">
+            https://github.com/icaroquadra
+          </a>{" "}
+        </p>
+
+        <p>
+          <a href="">#novoprojeto</a> <a href="">#nlw</a>{" "}
+          <a href="">#rocketseat</a>
+        </p>
       </div>
     </article>
   );
