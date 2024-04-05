@@ -1,6 +1,6 @@
 import styles from "./Comment.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 export function Comment() {
   return (
@@ -8,19 +8,26 @@ export function Comment() {
       <img src="https://avatars.githubusercontent.com/u/43785447?v=4"></img>
 
       <div className={styles.commentBox}>
-        <div className={styles.commentContent}></div>
+        <div className={styles.commentContent}>
+          <header>
+            <div className={styles.authorAndTime}>
+              <strong>
+                Icaro Quadra
+                <span>{" (you)"}</span>
+              </strong>
 
-        <header>
-          <div className={styles.authorAndTime}>
-            <strong> Icaro Quadra </strong>
+              <time title="11 de maio as 8:13h" dateTime="2024-04-24 09:15:09">
+                Cerca de 1h atrás
+              </time>
+            </div>
 
-            <time title="11 de maio as 8:13h" dateTime="2024-04-24 09:15:09">
-              Cerca de 1h atrás
-            </time>
-          </div>
+            <button title="delete comment">
+              <FontAwesomeIcon icon={faTrashCan} />
+            </button>
+          </header>
 
           <p>Very good Dev, Well Done!! :clap:</p>
-        </header>
+        </div>
 
         <footer>
           <button>

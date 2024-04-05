@@ -11,8 +11,11 @@
   --green-300: #00b37e;
   --green-500: #00875f;
 
+  --red-500: #f75a68;
+
   --radius: 6px;
   --line-height: 1.6;
+  --font-size: 0.875rem;
 }
 
 :focus {
