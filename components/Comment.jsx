@@ -1,11 +1,15 @@
 import styles from "./Comment.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { Avatar } from "./Avatar";
 
 export function Comment() {
   return (
     <div className={styles.comment}>
-      <img src="https://avatars.githubusercontent.com/u/43785447?v=4"></img>
+      <Avatar
+        hasBorder={false}
+        src="https://avatars.githubusercontent.com/u/43785447?v=4"
+      />
 
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>

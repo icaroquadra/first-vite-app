@@ -1,6 +1,7 @@
 import styles from "./Sidebar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { Avatar } from "./Avatar";
 
 export function Sidebar() {
   return (
@@ -11,10 +12,7 @@ export function Sidebar() {
       ></img>
 
       <div className={styles.profile}>
-        <img
-          className={styles.avatar}
-          src="https://avatars.githubusercontent.com/u/43785447?v=4"
-        ></img>
+        <Avatar src="https://avatars.githubusercontent.com/u/43785447?v=4" />
         <strong> nome do usuário </strong>
         <span> job </span>
       </div>
