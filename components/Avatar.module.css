@@ -2,12 +2,14 @@
   width: calc(3rem + 4px);
   height: calc(3rem + 4px);
   border-radius: var(--radius);
+  object-fit: cover;
 }
 
 .avatarWithBorder > img {
   width: calc(3rem + 4px);
   height: calc(3rem + 4px);
   border-radius: var(--radius);
+  object-fit: cover;
   border: 4px solid var(--gray-800);
   outline: 2px solid var(--green-500);
 }

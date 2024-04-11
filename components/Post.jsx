@@ -1,42 +1,71 @@
 import styles from "./Post.module.css";
 import { Avatar } from "./Avatar.jsx";
 
-export function Post(props) {
+export function Post({ author, publishedAt, content }) {
+  const publishdDateFormated = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    hour: "numeric",
+    minute: "numeric",
+  }).format(new Date(publishedAt));
+
+  function publishedAtRelativeToNow() {
+    const currentDate = new Date();
+    const timeDifference = currentDate - publishedAt;
+    const secondsDifference = Math.floor(timeDifference / 1000);
+
+    if (secondsDifference < 60) {
+      // Less than a minute ago
+      return "Just now";
+    } else if (secondsDifference < 3600) {
+      // Less than an hour ago
+      const minutes = Math.floor(secondsDifference / 60);
+      return `${minutes} minute(s) ago`;
+    } else if (secondsDifference < 86400) {
+      // Less than a day ago
+      const hours = Math.floor(secondsDifference / 3600);
+      return `${hours} hour(s) ago`;
+    } else if (secondsDifference < 604800) {
+      // Less than a week ago
+      const days = Math.floor(secondsDifference / 86400);
+      return `${days} day(s) ago`;
+    } else {
+      // More than a week ago, show the exact date
+      const formattedDate = new Intl.DateTimeFormat("en-US", {
+        day: "numeric",
+        month: "long",
+        hour: "numeric",
+        minute: "numeric",
+      }).format(publishedAt);
+      return `Published on ${formattedDate}`;
+    }
+  }
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://avatars.githubusercontent.com/u/43785447?v=4" />
+          <Avatar src={author.avatar_url} />
 
           <div className={styles.authorInfo}>
-            <strong>Hello</strong>
-            <span>there</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title="11 de maio as 8:13h" dateTime="2024-04-24 09:15:09">
-          Publicado há 1h
+        <time title={publishdDateFormated} dateTime={publishedAt.toISOString()}>
+          {publishedAtRelativeToNow()}
         </time>
       </header>
 
       <div className={styles.content}>
-        <p>Hello Everyone 👋</p>
-        <p>
-          {" "}
-          This is my first project with React and Vite, Im loving the experience
-          thanks for your visit. S2{" "}
-        </p>
-
-        <p>
-          <a href="https://github.com/icaroquadra">
-            https://github.com/icaroquadra
-          </a>{" "}
-        </p>
-
-        <p>
-          <a href="">#novoprojeto</a> <a href="">#nlw</a>{" "}
-          <a href="">#rocketseat</a>
-        </p>
+        {content.map((item, index) => {
+          if (item.type === "paragraph") {
+            return <p key={index}>{item.content}</p>;
+          } else if (item.type === "link") {
+            return <a key={index}>{item.content}</a>;
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>
