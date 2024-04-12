@@ -1,6 +1,5 @@
 import { Header } from "../components/Header.jsx";
 import { Post } from "../components/Post.jsx";
-import { Comment } from "../components/Comment.jsx";
 import { Sidebar } from "../components/Sidebar.jsx";
 import styles from "./App.module.css";
 import "./global.css";
@@ -25,7 +24,7 @@ const posts = [
         content: "https://github.com/icaroquadra",
       },
     ],
-    publishedAt: new Date("2024-04-01 09:15:09"),
+    publishedAt: new Date("2024-04-09 09:15:09"),
   },
   {
     id: 2,
@@ -47,7 +46,7 @@ const posts = [
         content: "https://github.com/icaroquadra",
       },
     ],
-    publishedAt: new Date("2024-04-09 09:15:09"),
+    publishedAt: new Date(),
   },
 ];
 
@@ -70,8 +69,6 @@ export function App() {
               />
             );
           })}
-
-          <Comment />
         </main>
       </div>
     </div>

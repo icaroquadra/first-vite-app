@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { Avatar } from "./Avatar";
 
-export function Comment() {
+export function Comment({ commentContent, onDeleteComment }) {
+  function handleDeleteComment() {
+    onDeleteComment(commentContent);
+  }
+
   return (
     <div className={styles.comment}>
       <Avatar
@@ -25,12 +29,12 @@ export function Comment() {
               </time>
             </div>
 
-            <button title="delete comment">
+            <button onClick={handleDeleteComment} title="delete comment">
               <FontAwesomeIcon icon={faTrashCan} />
             </button>
           </header>
 
-          <p>Very good Dev, Well Done!! :clap:</p>
+          <p>{commentContent}</p>
         </div>
 
         <footer>

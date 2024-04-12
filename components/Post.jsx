@@ -1,7 +1,13 @@
+import { Comment } from "./Comment.jsx";
+import { useState } from "react";
 import styles from "./Post.module.css";
 import { Avatar } from "./Avatar.jsx";
 
 export function Post({ author, publishedAt, content }) {
+  const [comments, setComments] = useState(["great post fella"]);
+
+  const [newCommentText, setNewCommentText] = useState("");
+
   const publishdDateFormated = new Intl.DateTimeFormat("en-US", {
     day: "numeric",
     month: "long",
@@ -41,6 +47,25 @@ export function Post({ author, publishedAt, content }) {
     }
   }
 
+  function handleCommentSubmit(event) {
+    event.preventDefault();
+
+    setComments([...comments, newCommentText]);
+    setNewCommentText("");
+  }
+
+  function handleNewComment(event) {
+    setNewCommentText(event.target.value);
+  }
+
+  function deleteComment(commentToDelete) {
+    const commentWithoutDeleted = comments.filter(
+      (comment) => comment !== commentToDelete,
+    );
+
+    setComments(commentWithoutDeleted);
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -63,20 +88,39 @@ export function Post({ author, publishedAt, content }) {
           if (item.type === "paragraph") {
             return <p key={index}>{item.content}</p>;
           } else if (item.type === "link") {
-            return <a key={index}>{item.content}</a>;
+            return (
+              <p key={index}>
+                <a>{item.content}</a>
+              </p>
+            );
           }
         })}
       </div>
 
-      <form className={styles.commentForm}>
-        <strong>Deixe seu comentário</strong>
+      <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
+        <strong>Let your comment</strong>
 
-        <textarea placeholder="Deixe um comentário"></textarea>
+        <textarea
+          onChange={handleNewComment}
+          value={newCommentText}
+          name="newComment"
+          placeholder="Deixe um comentário"
+        ></textarea>
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit">Publish</button>
         </footer>
       </form>
+
+      {comments.map((commentContent) => {
+        return (
+          <Comment
+            key={commentContent}
+            commentContent={commentContent}
+            onDeleteComment={deleteComment}
+          />
+        );
+      })}
     </article>
   );
 }
