@@ -12,7 +12,9 @@ export function Comment({ commentContent, onDeleteComment }) {
   }
 
   function handleNumberOfClaps() {
-    setNumberOfClaps(numberOfClaps + 1);
+    setNumberOfClaps((state) => {
+      return state + 1;
+    });
   }
 
   return (
