@@ -1,11 +1,18 @@
 import styles from "./Comment.module.css";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { Avatar } from "./Avatar";
 
 export function Comment({ commentContent, onDeleteComment }) {
+  const [numberOfClaps, setNumberOfClaps] = useState(19);
+
   function handleDeleteComment() {
     onDeleteComment(commentContent);
+  }
+
+  function handleNumberOfClaps() {
+    setNumberOfClaps(numberOfClaps + 1);
   }
 
   return (
@@ -38,10 +45,10 @@ export function Comment({ commentContent, onDeleteComment }) {
         </div>
 
         <footer>
-          <button>
+          <button onClick={handleNumberOfClaps}>
             <FontAwesomeIcon icon={faThumbsUp} />
             claps
-            <span>20</span>
+            <span>{numberOfClaps}</span>
           </button>
         </footer>
       </div>
