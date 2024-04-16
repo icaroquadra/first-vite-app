@@ -4,7 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { Avatar } from "./Avatar";
 
-export function Comment({ commentContent, onDeleteComment }) {
+interface CommentProps {
+  commentContent: string;
+  onDeleteComment: (commentContent: string) => void;
+}
+
+export function Comment({ commentContent, onDeleteComment }: CommentProps) {
   const [numberOfClaps, setNumberOfClaps] = useState(19);
 
   function handleDeleteComment() {

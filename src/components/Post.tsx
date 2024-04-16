@@ -1,9 +1,26 @@
-import { Comment } from "./Comment.jsx";
-import { useState } from "react";
+import { Comment } from "./Comment.js";
+import { useState, FormEvent, ChangeEvent, InvalidEvent } from "react";
 import styles from "./Post.module.css";
-import { Avatar } from "./Avatar.jsx";
+import { Avatar } from "./Avatar.js";
 
-export function Post({ author, publishedAt, content }) {
+interface Author {
+  avatar_url: string;
+  name: string;
+  role: string;
+}
+
+interface Content {
+  type: "paragraph" | "link";
+  content: string;
+}
+
+interface PostProps {
+  author: Author;
+  content: Content[];
+  publishedAt: Date;
+}
+
+export function Post({ author, publishedAt, content }: PostProps) {
   const [comments, setComments] = useState(["great post fella"]);
 
   const [newCommentText, setNewCommentText] = useState("");
@@ -47,23 +64,23 @@ export function Post({ author, publishedAt, content }) {
     }
   }
 
-  function handleCommentSubmit(event) {
+  function handleCommentSubmit(event: FormEvent) {
     event.preventDefault();
 
     setComments([...comments, newCommentText]);
     setNewCommentText("");
   }
 
-  function handleNewComment(event) {
+  function handleNewComment(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("");
     setNewCommentText(event.target.value);
   }
 
-  function handleNewCommentInvalid(event) {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("Invalid comment");
   }
 
-  function deleteComment(commentToDelete) {
+  function deleteComment(commentToDelete: string) {
     const commentWithoutDeleted = comments.filter(
       (comment) => comment !== commentToDelete,
     );

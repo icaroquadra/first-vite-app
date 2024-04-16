@@ -1,15 +1,20 @@
 import styles from "./Post.module.css";
-import { Avatar } from "./Avatar.jsx";
+import { Avatar } from "./Avatar.tsx";
 
-export function Post(props) {
+interface PostProps {
+  avatar: string;
+  name: string;
+}
+
+export function Post({ avatar, name }: PostProps) {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src={props.avatar} />
+          <Avatar src={avatar} />
 
           <div className={styles.authorInfo}>
-            <strong>{props.name}</strong>
+            <strong>{name}</strong>
             <span>there</span>
           </div>
         </div>
