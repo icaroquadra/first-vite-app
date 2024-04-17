@@ -1,10 +1,11 @@
-import { Header } from "./components/Header.tsx";
-import { Post } from "./components/Post.tsx";
-import { Sidebar } from "./components/Sidebar.tsx";
+import { Header } from "./components/header/Header.tsx";
+import { Post } from "./components/post/Post.tsx";
+import { PostContent } from "./interfaces/PostInterface.tsx";
+import { Sidebar } from "./components/sidebar/Sidebar.tsx";
 import styles from "./App.module.css";
-import "./global.css";
+import "./styles/global.css";
 
-const posts = [
+const posts: PostContent[] = [
   {
     id: 1,
     author: {
@@ -17,7 +18,7 @@ const posts = [
       {
         type: "paragraph",
         content:
-          "This is my first project with React and Vite, Im loving the experience thanks for your visit. S2",
+          "This is my first project with Vite, Im loving the experience thanks for your visit. S2",
       },
       {
         type: "link",
@@ -39,7 +40,7 @@ const posts = [
       {
         type: "paragraph",
         content:
-          "This is my first project with React and Vite, Im loving the experience thanks for your visit. S2",
+          "This is my first project with Vite, Im loving the experience thanks for your visit. S2",
       },
       {
         type: "link",
@@ -59,15 +60,7 @@ export function App() {
 
         <main>
           {posts.map((post) => {
-            return (
-              <Post
-                author={post.author}
-                content={post.content}
-                publishedAt={post.publishedAt}
-                key={post.id}
-                {...post}
-              />
-            );
+            return <Post post={post} key={post.id} {...post} />;
           })}
         </main>
       </div>

@@ -1,26 +1,14 @@
-import { Comment } from "./Comment.js";
+import { Comment } from "../comment/Comment.js";
 import { useState, FormEvent, ChangeEvent, InvalidEvent } from "react";
 import styles from "./Post.module.css";
-import { Avatar } from "./Avatar.js";
-
-interface Author {
-  avatar_url: string;
-  name: string;
-  role: string;
-}
-
-interface Content {
-  type: "paragraph" | "link";
-  content: string;
-}
+import { Avatar } from "../avatar/Avatar.js";
+import { PostContent } from "../../interfaces/PostInterface.js";
 
 interface PostProps {
-  author: Author;
-  content: Content[];
-  publishedAt: Date;
+  post: PostContent;
 }
 
-export function Post({ author, publishedAt, content }: PostProps) {
+export function Post({ post }: PostProps) {
   const [comments, setComments] = useState(["great post fella"]);
 
   const [newCommentText, setNewCommentText] = useState("");
@@ -30,11 +18,11 @@ export function Post({ author, publishedAt, content }: PostProps) {
     month: "long",
     hour: "numeric",
     minute: "numeric",
-  }).format(new Date(publishedAt));
+  }).format(new Date(post.publishedAt));
 
   function publishedAtRelativeToNow() {
     const currentDate = new Date();
-    const timeDifference = currentDate - publishedAt;
+    const timeDifference = currentDate - post.publishedAt;
     const secondsDifference = Math.floor(timeDifference / 1000);
 
     if (secondsDifference < 60) {
@@ -59,7 +47,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
         month: "long",
         hour: "numeric",
         minute: "numeric",
-      }).format(publishedAt);
+      }).format(post.publishedAt);
       return `Published on ${formattedDate}`;
     }
   }
@@ -94,21 +82,24 @@ export function Post({ author, publishedAt, content }: PostProps) {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src={author.avatar_url} />
+          <Avatar src={post.author.avatar_url} />
 
           <div className={styles.authorInfo}>
-            <strong>{author.name}</strong>
-            <span>{author.role}</span>
+            <strong>{post.author.name}</strong>
+            <span>{post.author.role}</span>
           </div>
         </div>
 
-        <time title={publishdDateFormated} dateTime={publishedAt.toISOString()}>
+        <time
+          title={publishdDateFormated}
+          dateTime={post.publishedAt.toISOString()}
+        >
           {publishedAtRelativeToNow()}
         </time>
       </header>
 
       <div className={styles.content}>
-        {content.map((item, index) => {
+        {post.content.map((item, index) => {
           if (item.type === "paragraph") {
             return <p key={index}>{item.content}</p>;
           } else if (item.type === "link") {

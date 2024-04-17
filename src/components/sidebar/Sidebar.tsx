@@ -1,7 +1,7 @@
 import styles from "./Sidebar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { Avatar } from "./Avatar";
+import { Avatar } from "../avatar/Avatar";
 
 export function Sidebar() {
   return (

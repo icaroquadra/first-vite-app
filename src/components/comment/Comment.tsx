@@ -2,7 +2,7 @@ import styles from "./Comment.module.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faTrashCan } from "@fortawesome/free-regular-svg-icons";
-import { Avatar } from "./Avatar";
+import { Avatar } from "../avatar/Avatar";
 
 interface CommentProps {
   commentContent: string;
